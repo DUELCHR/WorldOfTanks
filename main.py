@@ -1,10 +1,8 @@
 import classes.application_class as application_class 
-import json
+import os
 
-application_infos = {}
-with open('application_env.json', 'r') as env_json:    
-    application_infos = json.load(env_json)
+application_id = os.environ["application_id"]
 
 
-app = application_class.Application( id = application_infos["application_id"] )
+app = application_class.Application( id = application_id )
 app.run()
