@@ -1,0 +1,6 @@
+__pycache__
+.pytest_cache
+.spyproject
+/classes/__pycache__
+/unitTests/__pycache__
+Account_ID.txt
