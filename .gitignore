@@ -5,4 +5,4 @@ __pycache__
 /unitTests/__pycache__
 .streamlit
 Account_ID.txt
-.vscode
+wot_env

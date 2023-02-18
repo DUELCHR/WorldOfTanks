@@ -12,25 +12,24 @@ class TestClass(unittest.TestCase):
         self.player_name = "Laquatas"
         self.account_id = 564790936
     def test_getPlayerAccountId(self):
-        # Testdaten vorbereiten
-        
+        # given        
         player = Player(self.player_name, self.application_id)
 
-        # Test ausführen
+        # when
         result = player.getPlayerAccountId(self.player_name)
 
-        # Überprüfen, ob die Anforderungen und der Rückgabewert korrekt sind
+        # then
         self.assertEqual(result, self.account_id)
 
     def test_getPlayerInfo(self):
-        # Testdaten vorbereiten
+        # given
         created_at = 1569141188
         player = Player(self.player_name, self.application_id)
 
-        # Test ausführen
+        # when
         result = player.getPlayerInfo()
 
-        # Überprüfen, ob die Anforderungen und der Rückgabewert korrekt sind
+        # then
         expected_result = {"name": self.player_name,
                            "account_id": self.account_id,
                            "clan_id": None,
@@ -42,14 +41,14 @@ class TestClass(unittest.TestCase):
         self.assertEqual(result[0].get('created_at'), expected_result["created_at"])
 
     def test_getPlayerTanks(self):
-        # Testdaten vorbereiten   
+        # given  
         tank_id = 52305
         player = Player(self.player_name, self.application_id)
     
-        # Test ausführen
+        # when
         result = player.getPlayerTanks()
         
-        # Überprüfen, ob die Anforderungen und der Rückgabewert korrekt sind
+        # then
         expected_result = {"name": self.player_name,
                            "account_id": self.account_id,
                            "tank_id": tank_id
@@ -58,5 +57,3 @@ class TestClass(unittest.TestCase):
         self.assertEqual(result[0].get('tank_id'), expected_result["tank_id"])
 
 
-if __name__ == '__main__':
-    unittest.main()
