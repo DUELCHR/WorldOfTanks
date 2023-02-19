@@ -1,6 +1,7 @@
 from dictor import dictor
-from api_helper_class import ApiHelper
-from classes.tank_class import Tank
+from .api_helper_class import ApiHelper
+from .tank_class import Tank
+import requests
 
 
 class Player:
@@ -14,7 +15,7 @@ class Player:
 
     def getPlayerAccountId(self, name):
         api_url = "https://api.worldoftanks.eu/wot/account/list/?application_id=" + self.application_id + "&search=" + name
-        data = self.apiHelper.getJsonFromUrl(api_url=api_url)
+        data = self.apiHelper.getJsonFromUrl(api_url)
         accountData = dictor(data, "data")
         accountId = dictor(accountData[0], "account_id")
         return accountId
@@ -22,7 +23,7 @@ class Player:
     def getPlayerInfo(self):
         if len(self.player_info) == 0:
             api_url = "https://api.worldoftanks.eu/wot/account/info/?application_id=" + self.application_id + "&account_id=" + str(self.account_id)
-            player_data = self.apiHelper.getJsonFromUrl(api_url=api_url)
+            player_data = self.apiHelper.getJsonFromUrl(api_url)
             self.player_info.append({"name": self.name,
                                      "account_id": self.account_id,
                                      "clan_id": dictor(player_data, "data." + str(self.account_id) + ".clan_id"),
@@ -33,7 +34,7 @@ class Player:
     def getPlayerTanks(self):
         if len(self.player_info) == 0:
             api_url = "https://api.worldoftanks.eu/wot/account/tanks/?application_id=" + self.application_id + "&account_id=" + str(self.account_id)
-            data = self.apiHelper.getJsonFromUrl(api_url=api_url)
+            data = self.apiHelper.getJsonFromUrl(api_url)
             
             tanks = dictor(data, "data." + str(self.account_id))                       
             tank_ids = []
